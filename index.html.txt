@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Letter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 50px;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
+        }
+        .visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Click Below to Open the Letter</h2>
+        <button onclick="askPassword()">Click to Open</button>
+
+        <div id="letter" class="hidden message">
+            <p><strong>Kelvin Chidera,</strong></p>
+            <p>Don’t worry, you will do perfectly well! Oh okay, let’s not be too confident, but don’t worry, you will do great in your bar finals. So take a deep breath, like right now!! Let’s go: 1…2…3… breathe in and breathe out.</p>
+            <p>Stop worrying, just read your book, revise, and pray. From someone that cares. ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function askPassword() {
+            let password = prompt("Hint: The girl he's into?");
+            let letter = document.getElementById("letter");
+            if (password && password.trim().toLowerCase() === "cheryl") {
+                letter.classList.remove("hidden");
+                letter.classList.add("visible");
+            } else {
+                alert("Wrong password! Try again.");
+                document.querySelector("button").classList.add("shake");
+                setTimeout(() => {
+                    document.querySelector("button").classList.remove("shake");
+                }, 500);
+            }
+        }
+    </script>
+
+</body>
+</html>
